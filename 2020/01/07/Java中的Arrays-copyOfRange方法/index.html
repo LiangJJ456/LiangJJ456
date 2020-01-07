@@ -46,20 +46,20 @@
   };
 </script>
 
-  <meta name="description" content="递归与非递归的转化递归的思想其实先遍历到最底层，再往上返回，与栈的先进后出其实是一样的，因此算法题具有这种从后往前或者先进后出思想的既可以考虑递归也可以考虑栈。 典型例子输入一个链表，按链表从尾到头的顺序返回一个ArrayList。12345678910111213141516171819202122&#x2F;***    public class ListNode &amp;#123;*">
+  <meta name="description" content="说明要使用这个方法，首先要import java.util.*;Arrays.copyOfRange(T[ ] original,int from,int to)将一个原始的数组original，从下标from开始复制，复制到上标to，生成一个新的数组。注意这里包括下标from，不包括上标to。用途这个方法在一些处理数组的编程题里很好用，效率和clone基本一致，都是native method，比">
 <meta property="og:type" content="article">
-<meta property="og:title" content="算法总结-1.20&#x2F;2020">
-<meta property="og:url" content="https://liangjj456.github.io/LiangJJ456/2020/01/07/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93-1-20-2020/index.html">
+<meta property="og:title" content="Java中的Arrays.copyOfRange方法">
+<meta property="og:url" content="https://liangjj456.github.io/LiangJJ456/2020/01/07/Java%E4%B8%AD%E7%9A%84Arrays-copyOfRange%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="L">
-<meta property="og:description" content="递归与非递归的转化递归的思想其实先遍历到最底层，再往上返回，与栈的先进后出其实是一样的，因此算法题具有这种从后往前或者先进后出思想的既可以考虑递归也可以考虑栈。 典型例子输入一个链表，按链表从尾到头的顺序返回一个ArrayList。12345678910111213141516171819202122&#x2F;***    public class ListNode &amp;#123;*">
+<meta property="og:description" content="说明要使用这个方法，首先要import java.util.*;Arrays.copyOfRange(T[ ] original,int from,int to)将一个原始的数组original，从下标from开始复制，复制到上标to，生成一个新的数组。注意这里包括下标from，不包括上标to。用途这个方法在一些处理数组的编程题里很好用，效率和clone基本一致，都是native method，比">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-01-07T02:57:57.000Z">
-<meta property="article:modified_time" content="2020-01-07T03:10:49.278Z">
+<meta property="article:published_time" content="2020-01-07T08:45:42.000Z">
+<meta property="article:modified_time" content="2020-01-07T08:50:17.231Z">
 <meta property="article:author" content="星梦">
-<meta property="article:tag" content="-算法">
+<meta property="article:tag" content="Java基础">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://liangjj456.github.io/LiangJJ456/2020/01/07/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93-1-20-2020/">
+<link rel="canonical" href="https://liangjj456.github.io/LiangJJ456/2020/01/07/Java%E4%B8%AD%E7%9A%84Arrays-copyOfRange%E6%96%B9%E6%B3%95/">
 
 
 <script id="page-configurations">
@@ -71,7 +71,7 @@
   };
 </script>
 
-  <title>算法总结-1.20/2020 | L</title>
+  <title>Java中的Arrays.copyOfRange方法 | L</title>
   
 
 
@@ -175,7 +175,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liangjj456.github.io/LiangJJ456/2020/01/07/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93-1-20-2020/">
+    <link itemprop="mainEntityOfPage" href="https://liangjj456.github.io/LiangJJ456/2020/01/07/Java%E4%B8%AD%E7%9A%84Arrays-copyOfRange%E6%96%B9%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/LiangJJ456/images/avatar.gif">
@@ -188,7 +188,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          算法总结-1.20/2020
+          Java中的Arrays.copyOfRange方法
         </h1>
 
         <div class="post-meta">
@@ -199,7 +199,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-01-07 10:57:57 / 修改时间：11:10:49" itemprop="dateCreated datePublished" datetime="2020-01-07T10:57:57+08:00">2020-01-07</time>
+              <time title="创建时间：2020-01-07 16:45:42 / 修改时间：16:50:17" itemprop="dateCreated datePublished" datetime="2020-01-07T16:45:42+08:00">2020-01-07</time>
             </span>
 
           
@@ -213,8 +213,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="递归与非递归的转化"><a href="#递归与非递归的转化" class="headerlink" title="递归与非递归的转化"></a>递归与非递归的转化</h1><h2 id="递归的思想其实先遍历到最底层，再往上返回，与栈的先进后出其实是一样的，因此算法题具有这种从后往前或者先进后出思想的既可以考虑递归也可以考虑栈。"><a href="#递归的思想其实先遍历到最底层，再往上返回，与栈的先进后出其实是一样的，因此算法题具有这种从后往前或者先进后出思想的既可以考虑递归也可以考虑栈。" class="headerlink" title="递归的思想其实先遍历到最底层，再往上返回，与栈的先进后出其实是一样的，因此算法题具有这种从后往前或者先进后出思想的既可以考虑递归也可以考虑栈。"></a>递归的思想其实先遍历到最底层，再往上返回，与栈的先进后出其实是一样的，因此算法题具有这种从后往前或者先进后出思想的既可以考虑递归也可以考虑栈。</h2><hr>
-<h1 id="典型例子"><a href="#典型例子" class="headerlink" title="典型例子"></a>典型例子</h1><h2 id="输入一个链表，按链表从尾到头的顺序返回一个ArrayList。"><a href="#输入一个链表，按链表从尾到头的顺序返回一个ArrayList。" class="headerlink" title="输入一个链表，按链表从尾到头的顺序返回一个ArrayList。"></a>输入一个链表，按链表从尾到头的顺序返回一个ArrayList。</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line">*    public class ListNode &#123;</span><br><span class="line">*        int val;</span><br><span class="line">*        ListNode next &#x3D; null;</span><br><span class="line">*</span><br><span class="line">*        ListNode(int val) &#123;</span><br><span class="line">*            this.val &#x3D; val;</span><br><span class="line">*        &#125;</span><br><span class="line">*    &#125;</span><br><span class="line">*</span><br><span class="line">*&#x2F;</span><br><span class="line">import java.util.ArrayList;</span><br><span class="line">public class Solution &#123;</span><br><span class="line">ArrayList&lt;Integer&gt; list &#x3D; new ArrayList();</span><br><span class="line">    public ArrayList&lt;Integer&gt; printListFromTailToHead(ListNode listNode) &#123;</span><br><span class="line">        if(listNode!&#x3D;null)&#123;</span><br><span class="line">            printListFromTailToHead(listNode.next);</span><br><span class="line">            list.add(listNode.val);</span><br><span class="line">        &#125;</span><br><span class="line">        return list;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><h2 id="要使用这个方法，首先要import-java-util"><a href="#要使用这个方法，首先要import-java-util" class="headerlink" title="要使用这个方法，首先要import java.util.*;"></a>要使用这个方法，首先要import java.util.*;</h2><h2 id="Arrays-copyOfRange-T-original-int-from-int-to"><a href="#Arrays-copyOfRange-T-original-int-from-int-to" class="headerlink" title="Arrays.copyOfRange(T[ ] original,int from,int to)"></a>Arrays.copyOfRange(T[ ] original,int from,int to)</h2><h2 id="将一个原始的数组original，从下标from开始复制，复制到上标to，生成一个新的数组。注意这里包括下标from，不包括上标to。"><a href="#将一个原始的数组original，从下标from开始复制，复制到上标to，生成一个新的数组。注意这里包括下标from，不包括上标to。" class="headerlink" title="将一个原始的数组original，从下标from开始复制，复制到上标to，生成一个新的数组。注意这里包括下标from，不包括上标to。"></a>将一个原始的数组original，从下标from开始复制，复制到上标to，生成一个新的数组。注意这里包括下标from，不包括上标to。</h2><h1 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h1><h2 id="这个方法在一些处理数组的编程题里很好用，效率和clone基本一致，都是native-method，比利用循环复制数组效率要高得多。"><a href="#这个方法在一些处理数组的编程题里很好用，效率和clone基本一致，都是native-method，比利用循环复制数组效率要高得多。" class="headerlink" title="这个方法在一些处理数组的编程题里很好用，效率和clone基本一致，都是native method，比利用循环复制数组效率要高得多。"></a>这个方法在一些处理数组的编程题里很好用，效率和clone基本一致，都是native method，比利用循环复制数组效率要高得多。</h2>
     </div>
 
     
@@ -223,7 +222,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/LiangJJ456/tags/%E7%AE%97%E6%B3%95/" rel="tag"># -算法</a>
+              <a href="/LiangJJ456/tags/Java%E5%9F%BA%E7%A1%80/" rel="tag"># Java基础</a>
           </div>
 
         
@@ -232,13 +231,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/LiangJJ456/2020/01/05/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" rel="prev" title="单例模式">
-      <i class="fa fa-chevron-left"></i> 单例模式
+    <a href="/LiangJJ456/2020/01/07/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93-1-20-2020/" rel="prev" title="算法总结-1.20/2020">
+      <i class="fa fa-chevron-left"></i> 算法总结-1.20/2020
     </a></div>
-      <div class="post-nav-item">
-    <a href="/LiangJJ456/2020/01/07/Java%E4%B8%AD%E7%9A%84Arrays-copyOfRange%E6%96%B9%E6%B3%95/" rel="next" title="Java中的Arrays.copyOfRange方法">
-      Java中的Arrays.copyOfRange方法 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -298,7 +294,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#递归与非递归的转化"><span class="nav-number">1.</span> <span class="nav-text">递归与非递归的转化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#递归的思想其实先遍历到最底层，再往上返回，与栈的先进后出其实是一样的，因此算法题具有这种从后往前或者先进后出思想的既可以考虑递归也可以考虑栈。"><span class="nav-number">1.1.</span> <span class="nav-text">递归的思想其实先遍历到最底层，再往上返回，与栈的先进后出其实是一样的，因此算法题具有这种从后往前或者先进后出思想的既可以考虑递归也可以考虑栈。</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#典型例子"><span class="nav-number">2.</span> <span class="nav-text">典型例子</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#输入一个链表，按链表从尾到头的顺序返回一个ArrayList。"><span class="nav-number">2.1.</span> <span class="nav-text">输入一个链表，按链表从尾到头的顺序返回一个ArrayList。</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#说明"><span class="nav-number">1.</span> <span class="nav-text">说明</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#要使用这个方法，首先要import-java-util"><span class="nav-number">1.1.</span> <span class="nav-text">要使用这个方法，首先要import java.util.*;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Arrays-copyOfRange-T-original-int-from-int-to"><span class="nav-number">1.2.</span> <span class="nav-text">Arrays.copyOfRange(T[ ] original,int from,int to)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将一个原始的数组original，从下标from开始复制，复制到上标to，生成一个新的数组。注意这里包括下标from，不包括上标to。"><span class="nav-number">1.3.</span> <span class="nav-text">将一个原始的数组original，从下标from开始复制，复制到上标to，生成一个新的数组。注意这里包括下标from，不包括上标to。</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用途"><span class="nav-number">2.</span> <span class="nav-text">用途</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#这个方法在一些处理数组的编程题里很好用，效率和clone基本一致，都是native-method，比利用循环复制数组效率要高得多。"><span class="nav-number">2.1.</span> <span class="nav-text">这个方法在一些处理数组的编程题里很好用，效率和clone基本一致，都是native method，比利用循环复制数组效率要高得多。</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
