@@ -172,6 +172,65 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liangjj456.github.io/LiangJJ456/2020/02/01/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/LiangJJ456/images/avatar.gif">
+      <meta itemprop="name" content="星梦">
+      <meta itemprop="description" content="星光荡开宇宙">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="L">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/LiangJJ456/2020/02/01/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">滑动窗口算法</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-02-01 09:27:57 / 修改时间：23:24:09" itemprop="dateCreated datePublished" datetime="2020-02-01T09:27:57+08:00">2020-02-01</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="https-www-zhihu-com-topic-20746237-intro"><a href="#https-www-zhihu-com-topic-20746237-intro" class="headerlink" title="https://www.zhihu.com/topic/20746237/intro"></a><a href="https://www.zhihu.com/topic/20746237/intro" target="_blank" rel="noopener">https://www.zhihu.com/topic/20746237/intro</a></h1><p><a href="http://www.imooc.com/article/285643" target="_blank" rel="noopener">http://www.imooc.com/article/285643</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://liangjj456.github.io/LiangJJ456/2020/01/10/ConcurrentHashMap%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -252,10 +311,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-01-09 14:04:00 / 修改时间：22:08:11" itemprop="dateCreated datePublished" datetime="2020-01-09T14:04:00+08:00">2020-01-09</time>
+              <time title="创建时间：2020-01-09 14:04:00" itemprop="dateCreated datePublished" datetime="2020-01-09T14:04:00+08:00">2020-01-09</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-01 23:24:05" itemprop="dateModified" datetime="2020-02-01T23:24:05+08:00">2020-02-01</time>
+              </span>
 
           
 
@@ -268,7 +333,62 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="等待编写"><a href="#等待编写" class="headerlink" title="等待编写"></a>等待编写</h1>
+          <h1 id="相向指针"><a href="#相向指针" class="headerlink" title="相向指针"></a>相向指针</h1><blockquote>
+<p>两个相向的指针，在算法的一开始，两根指针分别位于数组/字符串的两端，并相向行走。</p>
+</blockquote>
+<h2 id="应用1：翻转字符串"><a href="#应用1：翻转字符串" class="headerlink" title="应用1：翻转字符串"></a>应用1：翻转字符串</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">代码：</span><br><span class="line">public class Solution&#123;</span><br><span class="line">    public void  reverse(String s)&#123;</span><br><span class="line">        for(int i&#x3D;0,j&#x3D;s.length()-1;;)&#123;</span><br><span class="line">            if(i&lt;j)&#123;</span><br><span class="line">                char c&#x3D;s[i];</span><br><span class="line">                s[i]&#x3D;s[j];</span><br><span class="line">                s[j]&#x3D;c;</span><br><span class="line">                i++;</span><br><span class="line">                j++;</span><br><span class="line">            &#125;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="应用2：两数之和"><a href="#应用2：两数之和" class="headerlink" title="应用2：两数之和"></a>应用2：两数之和</h2><blockquote>
+<p>给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。<br>你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public class Solution&#123;</span><br><span class="line">    public int[] twoSum(int[] nums,int target)&#123;</span><br><span class="line">        Array.sort(nums);</span><br><span class="line">        int l&#x3D;0;</span><br><span class="line">        int r&#x3D;nums.lenth;</span><br><span class="line">        int[] res&#x3D;new int[2];</span><br><span class="line">        while(l&lt;r)&#123;</span><br><span class="line">            if(nums[l]+nums[r]&#x3D;&#x3D;target)&#123;</span><br><span class="line">                res[0]&#x3D;l;</span><br><span class="line">                res[1]&#x3D;r;</span><br><span class="line">                return res;</span><br><span class="line">            &#125;</span><br><span class="line">            if(nums[l]+nums[r]&lt;target)&#123;</span><br><span class="line">                l++;</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                r++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">基于有序数组的特性，不断移动左右指针，减少不必要的遍历，时间复杂度为O(nlogn)， 主要是排序的复杂度。但是在空间上，不需要额外空间，因此额外空间复杂度是 O(1)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>思路：首先我们对数组进行排序。<br><br>用两个指针(L, R)从左右开始：<br><br>如果numbers[L] + numbers[R] == target, 说明找到，返回对应的数。<br>如果numbers[L] + numbers[R] &lt; target, 此时L指针右移，只有这样才可能让和更大。<br>反之使R左移。</p>
+</blockquote>
+<h2 id="应用3：判断回文串"><a href="#应用3：判断回文串" class="headerlink" title="应用3：判断回文串"></a>应用3：判断回文串</h2><blockquote>
+<p>另外一个双指针的经典练习题，就是回文串的判断问题。给一个字符串，判断这个字符串是不是回文串。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">boolean isPalindrome(String s) &#123;</span><br><span class="line">    for (int i &#x3D; 0, j &#x3D; s.length() - 1; i &lt; j; i++, j--) &#123;</span><br><span class="line">        if (s.charAt(i) !&#x3D; s.charAt(j)) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="同向双指针"><a href="#同向双指针" class="headerlink" title="同向双指针"></a>同向双指针</h1><blockquote>
+<p>即两个指针都是同向的，但是一个指针快，一个指针慢，并且快的指针会遍历整个数组或者链表。</p>
+</blockquote>
+<h2 id="应用一：数组去重问题"><a href="#应用一：数组去重问题" class="headerlink" title="应用一：数组去重问题"></a>应用一：数组去重问题</h2><blockquote>
+<p>首先将数组排序，这样那些重复的整数就会被挤到一起。然后用两根指针，一根走得快一些遍历整个数组，另一根指针一直指向当前不重复的部分的最后一个数。当快指针发现和慢指针指向的数不同之后，先对慢指针++，然后把快指针指向的数赋予给慢指针的指向的最后一个的位置。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">代码：</span><br><span class="line">public class Solution&#123;</span><br><span class="line">    public  int noRepeat(int[] array)&#123;</span><br><span class="line">        if(array.length&#x3D;&#x3D;0)&#123;</span><br><span class="line">            retrun 0;</span><br><span class="line">        &#125;</span><br><span class="line">        int q&#x3D;0;&#x2F;&#x2F;慢指针</span><br><span class="line">        for(int i&#x3D;1;i&lt;array.length;i++)&#123;</span><br><span class="line">            if(array[q]!&#x3D;array[i]&#123;</span><br><span class="line">                q++;</span><br><span class="line">                array[q]&#x3D;array[i];</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">        retrun q+1;&#x2F;&#x2F;返回新的长度</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="应用2：滑动窗口问题"><a href="#应用2：滑动窗口问题" class="headerlink" title="应用2：滑动窗口问题"></a>应用2：滑动窗口问题</h2><blockquote>
+<p>问题引述: 这个问题并没有什么难度，但是如果你过于暴力的用户O(n * k) 的算法去做是并不合适的。比如当前的 window 是 |1,2|,3,4。那么当 window 从左往右移动到 1,|2,3|,4 的时候，整个 window 内的整数和是增加了3，减少了1。因此只需要模拟整个窗口在滑动的过程中，整数一进一出的变化即可。这就是滑动窗口问题。<br>时间复杂度O(n),空间复杂度O(n-k+1)</p>
+</blockquote>
+<h2 id="应用3：两数之差问题"><a href="#应用3：两数之差问题" class="headerlink" title="应用3：两数之差问题"></a>应用3：两数之差问题</h2><h2 id="应用4：链表中点问题"><a href="#应用4：链表中点问题" class="headerlink" title="应用4：链表中点问题"></a>应用4：链表中点问题</h2><blockquote>
+<p>问题引述：数据流问题 Data Stream Problem</p>
+<blockquote>
+<p>所谓的数据流问题，就是说，你需要设计一个在线系统，这个系统不断的接受一些数据，并维护这些数据的一些信息。比如这个问题就是在数据流中维护中点在哪儿。（维护中点的意思就是提供一个接口，来获取中点）<br><br><br>类似的一些数据流问题还有：</p>
+<ul>
+<li>数据流中位数 <a href="http://www.lintcode.com/problem/data-stream-median/" target="_blank" rel="noopener">http://www.lintcode.com/problem/data-stream-median/</a></li>
+<li>数据流最大 K 项 <a href="http://www.lintcode.com/problem/top-k-largest-numbers-ii/" target="_blank" rel="noopener">http://www.lintcode.com/problem/top-k-largest-numbers-ii/</a></li>
+<li>数据流高频 K 项 <a href="http://www.lintcode.com/problem/top-k-frequent-words-ii/" target="_blank" rel="noopener">http://www.lintcode.com/problem/top-k-frequent-words-ii/</a></li>
+</ul>
+</blockquote>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">代码：</span><br><span class="line">    public class Sulotion&#123;</span><br><span class="line">        public ListNode getMid(ListNode head)&#123;</span><br><span class="line">            ListNode pre&#x3D;head.next;</span><br><span class="line">            ListNode mid&#x3D;head;</span><br><span class="line">            while(pre!&#x3D;null&amp;&amp;pre.next!&#x3D;null)&#123;</span><br><span class="line">                mid&#x3D;mid.next;</span><br><span class="line">                pre&#x3D;pre.next.next;</span><br><span class="line">            &#125;</span><br><span class="line">            retrun mid;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>类似问题：<br><br><br>求链表的倒数第k个节点</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">代码：</span><br><span class="line">public class Solution&#123;</span><br><span class="line">    public ListNode getK(ListNode head,int k)&#123;</span><br><span class="line">        ListNode p&#x3D;head;</span><br><span class="line">        ListNode pre&#x3D;head;</span><br><span class="line">        int a&#x3D;k;&#x2F;&#x2F;记录K值</span><br><span class="line">        int count&#x3D;0;&#x2F;&#x2F;记录节点个数</span><br><span class="line">        while(pre!&#x3D;null)&#123;</span><br><span class="line">            pre&#x3D;pre.next;</span><br><span class="line">            count++;</span><br><span class="line">            if(k&lt;1)&#123;</span><br><span class="line">                pre&#x3D;pre.next;</span><br><span class="line">            &#125;</span><br><span class="line">            k--;</span><br><span class="line">        &#125;</span><br><span class="line">        if(count&lt;a)&#123;</span><br><span class="line">            retrun null;</span><br><span class="line">        &#125;</span><br><span class="line">        return pre;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="两大排序算法"><a href="#两大排序算法" class="headerlink" title="两大排序算法"></a>两大排序算法</h1><blockquote>
+<p>快速选择算法</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">快速排序代码：</span><br><span class="line">注：使用相向的指针</span><br><span class="line">public class Solution&#123;</span><br><span class="line">    public static void quickSort(int[] array,int l,int,r)&#123;</span><br><span class="line">        int[] q&#x3D;partition(array,l,r);</span><br><span class="line">        quickSort(array,l,q[0]-1);</span><br><span class="line">        quickSort(array,q[1]+1,r);</span><br><span class="line">    &#125;</span><br><span class="line">    private static int[] partition(int array,int l,int r)&#123;</span><br><span class="line">        int less&#x3D;l-1;&#x2F;&#x2F;作为左边界</span><br><span class="line">        int more&#x3D;r;&#x2F;&#x2F;作为右边界</span><br><span class="line">        &#x2F;&#x2F;以最后一个下标r作为哨兵值</span><br><span class="line">        while(l&lt;more)&#123;</span><br><span class="line">            if(array[l]&lt;array[r])&#123;</span><br><span class="line">                swap(array,++less,l++);</span><br><span class="line">            &#125;else if(array[l]&gt;array[r])&#123;</span><br><span class="line">                swap(array,--more,l);&#x2F;&#x2F;注意l不移动</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                l++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        swap(array,r,more);&#x2F;&#x2F;将哨兵值移动到两边界中间</span><br><span class="line">        return new int[]&#123;less+1,more&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">   private static void swap(int[]arr,int i,int j)&#123;</span><br><span class="line">	int temp&#x3D;arr[i];</span><br><span class="line">	arr[i]&#x3D;arr[j];</span><br><span class="line">	arr[j]&#x3D;temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">tips：问题：</span><br><span class="line">当所有的序列都是有序的，快排还是用最后一个数划分，那么就会变成时间复杂度为o(n2)</span><br><span class="line">解决：</span><br><span class="line">随机快排：最常用的排序！！！！</span><br><span class="line">在相等的事件复杂度下常数项最低</span><br><span class="line">空间复杂度：o(logn)(花费在划分点上)</span><br><span class="line">利用一个随机的数和最后一个数交换，再进行快排，那么他的时间复杂度就是一个随机事件</span><br><span class="line">&#x2F;&#x2F;随机快排</span><br><span class="line">swap(arr,L+(int)(Math.random()*(R-L+1)),R);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>归并排序</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">public static void mergeSort(int[] arr) &#123;</span><br><span class="line">    sort(arr, 0, arr.length - 1);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static void sort(int[] arr, int L, int R) &#123;</span><br><span class="line">    if(L &#x3D;&#x3D; R) &#123;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    int mid &#x3D; L + ((R - L) &gt;&gt; 1);</span><br><span class="line">    sort(arr, L, mid);</span><br><span class="line">    sort(arr, mid + 1, R);</span><br><span class="line">    merge(arr, L, mid, R);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static void merge(int[] arr, int L, int mid, int R) &#123;</span><br><span class="line">    int[] temp &#x3D; new int[R - L + 1];</span><br><span class="line">    int i &#x3D; 0;</span><br><span class="line">    int p1 &#x3D; L;</span><br><span class="line">    int p2 &#x3D; mid + 1;</span><br><span class="line">    &#x2F;&#x2F; 比较左右两部分的元素，哪个小，把那个元素填入temp中</span><br><span class="line">    while(p1 &lt;&#x3D; mid &amp;&amp; p2 &lt;&#x3D; R) &#123;</span><br><span class="line">        temp[i++] &#x3D; arr[p1] &lt; arr[p2] ? arr[p1++] : arr[p2++];</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 上面的循环退出后，把剩余的元素依次填入到temp中</span><br><span class="line">    &#x2F;&#x2F; 以下两个while只有一个会执行</span><br><span class="line">    while(p1 &lt;&#x3D; mid) &#123;</span><br><span class="line">        temp[i++] &#x3D; arr[p1++];</span><br><span class="line">    &#125;</span><br><span class="line">    while(p2 &lt;&#x3D; R) &#123;</span><br><span class="line">        temp[i++] &#x3D; arr[p2++];</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 把最终的排序的结果复制给原数组</span><br><span class="line">    for(i &#x3D; 0; i &lt; temp.length; i++) &#123;</span><br><span class="line">        arr[L + i] &#x3D; temp[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">时间复杂度：O(nlogn)</span><br><span class="line">空间复杂度：O(N)，归并排序需要一个与原数组相同长度的数组做辅助来排序</span><br><span class="line">稳定性：归并排序是稳定的排序算法，temp[i++] &#x3D; arr[p1] &lt;&#x3D; arr[p2] ? arr[p1++] : arr[p2++];这行代码可以保证当左右两部分的值相等的时候，先复制左边的值，这样可以保证值相等的时候两个元素的相对位置不变。</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
       
     </div>
 
@@ -824,7 +944,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/LiangJJ456/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
