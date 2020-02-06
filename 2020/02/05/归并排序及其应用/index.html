@@ -46,20 +46,20 @@
   };
 </script>
 
-  <meta name="description" content="快速幂法思想快速幂算法能帮我们算出指数非常大的幂，传统的求幂算法之所以时间复杂度非常高（为O(指数n)），就是因为当指数n非常大的时候，需要执行的循环操作次数也非常大。所以我们快速幂算法的核心思想就是每一步都把指数分成两半，而相应的底数做平方运算。这样不仅能把非常大的指数给不断变小，所需要执行的循环次数也变小，而最后表示的结果却一直不会变。例子给定一个double类型的浮点数base和int类型的">
+  <meta name="description" content="归并排序介绍 由分治的思想，将小范围的排好序，再排大范围的  归并排序的应用应用一： 小和问题 问题：在一个数组中，每一个数左边比当前数小的数累加起来，叫做这个数组的小和。求一个数组的小和。例子：[1,3,4,2,5]1左边比1小的数，没有；3左边比3小的数，1；4左边比4小的数，1、3；2左边比2小的数，1；5左边比5小的数，1、3、4、2；所以小和为1+1+3+1+1+3+4+2&#x3D;16  12">
 <meta property="og:type" content="article">
-<meta property="og:title" content="快速幂法">
-<meta property="og:url" content="https://liangjj456.github.io/LiangJJ456/2020/01/08/%E5%BF%AB%E9%80%9F%E5%B9%82%E6%B3%95/index.html">
+<meta property="og:title" content="归并排序及其应用">
+<meta property="og:url" content="https://liangjj456.github.io/LiangJJ456/2020/02/05/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8/index.html">
 <meta property="og:site_name" content="L">
-<meta property="og:description" content="快速幂法思想快速幂算法能帮我们算出指数非常大的幂，传统的求幂算法之所以时间复杂度非常高（为O(指数n)），就是因为当指数n非常大的时候，需要执行的循环操作次数也非常大。所以我们快速幂算法的核心思想就是每一步都把指数分成两半，而相应的底数做平方运算。这样不仅能把非常大的指数给不断变小，所需要执行的循环次数也变小，而最后表示的结果却一直不会变。例子给定一个double类型的浮点数base和int类型的">
+<meta property="og:description" content="归并排序介绍 由分治的思想，将小范围的排好序，再排大范围的  归并排序的应用应用一： 小和问题 问题：在一个数组中，每一个数左边比当前数小的数累加起来，叫做这个数组的小和。求一个数组的小和。例子：[1,3,4,2,5]1左边比1小的数，没有；3左边比3小的数，1；4左边比4小的数，1、3；2左边比2小的数，1；5左边比5小的数，1、3、4、2；所以小和为1+1+3+1+1+3+4+2&#x3D;16  12">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-01-08T09:36:51.000Z">
-<meta property="article:modified_time" content="2020-01-08T09:42:49.628Z">
+<meta property="article:published_time" content="2020-02-05T13:23:29.000Z">
+<meta property="article:modified_time" content="2020-02-06T01:46:42.297Z">
 <meta property="article:author" content="星梦">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://liangjj456.github.io/LiangJJ456/2020/01/08/%E5%BF%AB%E9%80%9F%E5%B9%82%E6%B3%95/">
+<link rel="canonical" href="https://liangjj456.github.io/LiangJJ456/2020/02/05/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8/">
 
 
 <script id="page-configurations">
@@ -71,7 +71,7 @@
   };
 </script>
 
-  <title>快速幂法 | L</title>
+  <title>归并排序及其应用 | L</title>
   
 
 
@@ -175,7 +175,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liangjj456.github.io/LiangJJ456/2020/01/08/%E5%BF%AB%E9%80%9F%E5%B9%82%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="https://liangjj456.github.io/LiangJJ456/2020/02/05/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/LiangJJ456/images/avatar.gif">
@@ -188,7 +188,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          快速幂法
+          归并排序及其应用
         </h1>
 
         <div class="post-meta">
@@ -197,10 +197,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-01-08 17:36:51 / 修改时间：17:42:49" itemprop="dateCreated datePublished" datetime="2020-01-08T17:36:51+08:00">2020-01-08</time>
+              <time title="创建时间：2020-02-05 21:23:29" itemprop="dateCreated datePublished" datetime="2020-02-05T21:23:29+08:00">2020-02-05</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-06 09:46:42" itemprop="dateModified" datetime="2020-02-06T09:46:42+08:00">2020-02-06</time>
+              </span>
 
           
 
@@ -213,7 +219,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="快速幂法思想"><a href="#快速幂法思想" class="headerlink" title="快速幂法思想"></a>快速幂法思想</h1><h4 id="快速幂算法能帮我们算出指数非常大的幂，传统的求幂算法之所以时间复杂度非常高（为O-指数n-），就是因为当指数n非常大的时候，需要执行的循环操作次数也非常大。所以我们快速幂算法的核心思想就是每一步都把指数分成两半，而相应的底数做平方运算。这样不仅能把非常大的指数给不断变小，所需要执行的循环次数也变小，而最后表示的结果却一直不会变。"><a href="#快速幂算法能帮我们算出指数非常大的幂，传统的求幂算法之所以时间复杂度非常高（为O-指数n-），就是因为当指数n非常大的时候，需要执行的循环操作次数也非常大。所以我们快速幂算法的核心思想就是每一步都把指数分成两半，而相应的底数做平方运算。这样不仅能把非常大的指数给不断变小，所需要执行的循环次数也变小，而最后表示的结果却一直不会变。" class="headerlink" title="快速幂算法能帮我们算出指数非常大的幂，传统的求幂算法之所以时间复杂度非常高（为O(指数n)），就是因为当指数n非常大的时候，需要执行的循环操作次数也非常大。所以我们快速幂算法的核心思想就是每一步都把指数分成两半，而相应的底数做平方运算。这样不仅能把非常大的指数给不断变小，所需要执行的循环次数也变小，而最后表示的结果却一直不会变。"></a>快速幂算法能帮我们算出指数非常大的幂，传统的求幂算法之所以时间复杂度非常高（为O(指数n)），就是因为当指数n非常大的时候，需要执行的循环操作次数也非常大。所以我们快速幂算法的核心思想就是每一步都把指数分成两半，而相应的底数做平方运算。这样不仅能把非常大的指数给不断变小，所需要执行的循环次数也变小，而最后表示的结果却一直不会变。</h4><h1 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h1><h4 id="给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方。保证base和exponent不同时为0"><a href="#给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方。保证base和exponent不同时为0" class="headerlink" title="给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方。保证base和exponent不同时为0"></a>给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方。保证base和exponent不同时为0</h4> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"> public class Solution &#123;</span><br><span class="line">    public double Power(double base, int exponent) &#123;</span><br><span class="line">        if(base&#x3D;&#x3D;0)&#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        if(exponent&#x3D;&#x3D;0)&#123;</span><br><span class="line">            return 1;</span><br><span class="line">        &#125;</span><br><span class="line">        double result&#x3D;1;</span><br><span class="line">        int tem&#x3D;Math.abs(exponent);</span><br><span class="line">        while(tem&gt;0)&#123;</span><br><span class="line">            if(tem%2&#x3D;&#x3D;0)&#123;</span><br><span class="line">                tem&#x3D;tem&#x2F;2;</span><br><span class="line">                base&#x3D;base*base;</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                tem&#x3D;tem-1;&#x2F;&#x2F;对于奇数的，可以拆分成1和一个偶数</span><br><span class="line">                tem&#x3D;tem&#x2F;2;</span><br><span class="line">                result&#x3D;result*base;&#x2F;&#x2F;注意拆分的1要保存在result中</span><br><span class="line">                base&#x3D;base*base;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if(exponent&lt;0)&#123;</span><br><span class="line">            return 1&#x2F;result;</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="归并排序介绍"><a href="#归并排序介绍" class="headerlink" title="归并排序介绍"></a>归并排序介绍</h1><blockquote>
+<p>由分治的思想，将小范围的排好序，再排大范围的</p>
+</blockquote>
+<h1 id="归并排序的应用"><a href="#归并排序的应用" class="headerlink" title="归并排序的应用"></a>归并排序的应用</h1><h2 id="应用一：-小和问题"><a href="#应用一：-小和问题" class="headerlink" title="应用一： 小和问题"></a>应用一： 小和问题</h2><blockquote>
+<p>问题：<br><br>在一个数组中，每一个数左边比当前数小的数累加起来，叫做这个数组的小和。求一个数组的小和。<br><br>例子：<br><br>[1,3,4,2,5]<br><br>1左边比1小的数，没有；<br><br>3左边比3小的数，1；<br><br>4左边比4小的数，1、3；<br><br>2左边比2小的数，1；<br><br>5左边比5小的数，1、3、4、2；<br><br>所以小和为1+1+3+1+1+3+4+2=16</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">思路：</span><br><span class="line">在归并的过程，因为是由小范围扩大到大范围并且划分的每一部分的次序在大范围中和原数组是一致的。</span><br><span class="line">因此可以在归并的merge方法中统计小和。</span><br><span class="line">代码：</span><br><span class="line">public static int smallSum(int[] array)&#123;</span><br><span class="line">        if(array&#x3D;&#x3D;null||array.length&lt;2)&#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        return mergeSort(array,0,array.length-1);</span><br><span class="line">    &#125;</span><br><span class="line">    public static int mergeSort(int[] array,int l,int r)&#123;</span><br><span class="line">        if(l&#x3D;&#x3D;r)&#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        int mid&#x3D;l+((r-l)&gt;&gt;1);</span><br><span class="line">        return mergeSort(array,l,mid)+</span><br><span class="line">        mergeSort(array,mid+1,r)+</span><br><span class="line">        merge(array,l,mid,r);</span><br><span class="line">    &#125;</span><br><span class="line">    public static int merge(int[] array,int l,int mid,int r)&#123;</span><br><span class="line">        int[] help&#x3D;new int[r-l+1];&#x2F;&#x2F;辅助数组</span><br><span class="line">        int p1&#x3D;l;</span><br><span class="line">        int p2&#x3D;mid+1;</span><br><span class="line">        int i&#x3D;0;</span><br><span class="line">        int res&#x3D;0;</span><br><span class="line">        while (p1&lt;&#x3D;mid&amp;&amp;p2&lt;&#x3D;r)&#123;</span><br><span class="line">            res+&#x3D;array[p1]&lt;array[p2]?array[p1]*(r-p2+1):0;</span><br><span class="line">            help[i++]&#x3D;array[p1]&lt;array[p2]?array[p1++]:array[p2++];</span><br><span class="line">        &#125;</span><br><span class="line">        while(p1&lt;&#x3D;mid)&#123;</span><br><span class="line">            help[i++]&#x3D;array[p1++];</span><br><span class="line">        &#125;</span><br><span class="line">        while(p2&lt;&#x3D;r)&#123;</span><br><span class="line">            help[i++]&#x3D;array[p2++];</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F;将辅助数组赋予数组中</span><br><span class="line">        for (i &#x3D; 0; i &lt;help.length ; i++) &#123;</span><br><span class="line">            array[l+i]&#x3D;help[i];</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h2>类似的问题：逆序对</h2>
+<br><h3>在一个数组中，左边的数如果比右边的数大，则折两个数构成一个逆序对，请打印所有逆序对。</h3>
+</blockquote>
+
     </div>
 
     
@@ -231,13 +248,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/LiangJJ456/2020/01/08/%E4%BA%8C%E8%BF%9B%E5%88%B6%E7%AE%97%E6%B3%95%E9%A2%98%E6%80%BB%E7%BB%93/" rel="prev" title="二进制算法题总结">
-      <i class="fa fa-chevron-left"></i> 二进制算法题总结
+    <a href="/LiangJJ456/2020/02/05/%E6%A1%B6%E6%8E%92%E5%BA%8F%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8/" rel="prev" title="桶排序及其应用">
+      <i class="fa fa-chevron-left"></i> 桶排序及其应用
     </a></div>
-      <div class="post-nav-item">
-    <a href="/LiangJJ456/2020/01/09/%E5%8F%8C%E6%8C%87%E9%92%88%E7%AE%97%E6%B3%95/" rel="next" title="双指针算法">
-      双指针算法 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -297,7 +311,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#快速幂法思想"><span class="nav-number">1.</span> <span class="nav-text">快速幂法思想</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#快速幂算法能帮我们算出指数非常大的幂，传统的求幂算法之所以时间复杂度非常高（为O-指数n-），就是因为当指数n非常大的时候，需要执行的循环操作次数也非常大。所以我们快速幂算法的核心思想就是每一步都把指数分成两半，而相应的底数做平方运算。这样不仅能把非常大的指数给不断变小，所需要执行的循环次数也变小，而最后表示的结果却一直不会变。"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">快速幂算法能帮我们算出指数非常大的幂，传统的求幂算法之所以时间复杂度非常高（为O(指数n)），就是因为当指数n非常大的时候，需要执行的循环操作次数也非常大。所以我们快速幂算法的核心思想就是每一步都把指数分成两半，而相应的底数做平方运算。这样不仅能把非常大的指数给不断变小，所需要执行的循环次数也变小，而最后表示的结果却一直不会变。</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#例子"><span class="nav-number">2.</span> <span class="nav-text">例子</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方。保证base和exponent不同时为0"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方。保证base和exponent不同时为0</span></a></li></ol></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#归并排序介绍"><span class="nav-number">1.</span> <span class="nav-text">归并排序介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#归并排序的应用"><span class="nav-number">2.</span> <span class="nav-text">归并排序的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#应用一：-小和问题"><span class="nav-number">2.1.</span> <span class="nav-text">应用一： 小和问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">2.2.</span> <span class="nav-text">类似的问题：逆序对</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">2.2.1.</span> <span class="nav-text">在一个数组中，左边的数如果比右边的数大，则折两个数构成一个逆序对，请打印所有逆序对。</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
