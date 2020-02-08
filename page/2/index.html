@@ -172,6 +172,255 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liangjj456.github.io/LiangJJ456/2020/01/08/%E5%BF%AB%E9%80%9F%E5%B9%82%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/LiangJJ456/images/avatar.gif">
+      <meta itemprop="name" content="星梦">
+      <meta itemprop="description" content="星光荡开宇宙">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="L">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/LiangJJ456/2020/01/08/%E5%BF%AB%E9%80%9F%E5%B9%82%E6%B3%95/" class="post-title-link" itemprop="url">快速幂法</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-01-08 17:36:51 / 修改时间：17:42:49" itemprop="dateCreated datePublished" datetime="2020-01-08T17:36:51+08:00">2020-01-08</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="快速幂法思想"><a href="#快速幂法思想" class="headerlink" title="快速幂法思想"></a>快速幂法思想</h1><h4 id="快速幂算法能帮我们算出指数非常大的幂，传统的求幂算法之所以时间复杂度非常高（为O-指数n-），就是因为当指数n非常大的时候，需要执行的循环操作次数也非常大。所以我们快速幂算法的核心思想就是每一步都把指数分成两半，而相应的底数做平方运算。这样不仅能把非常大的指数给不断变小，所需要执行的循环次数也变小，而最后表示的结果却一直不会变。"><a href="#快速幂算法能帮我们算出指数非常大的幂，传统的求幂算法之所以时间复杂度非常高（为O-指数n-），就是因为当指数n非常大的时候，需要执行的循环操作次数也非常大。所以我们快速幂算法的核心思想就是每一步都把指数分成两半，而相应的底数做平方运算。这样不仅能把非常大的指数给不断变小，所需要执行的循环次数也变小，而最后表示的结果却一直不会变。" class="headerlink" title="快速幂算法能帮我们算出指数非常大的幂，传统的求幂算法之所以时间复杂度非常高（为O(指数n)），就是因为当指数n非常大的时候，需要执行的循环操作次数也非常大。所以我们快速幂算法的核心思想就是每一步都把指数分成两半，而相应的底数做平方运算。这样不仅能把非常大的指数给不断变小，所需要执行的循环次数也变小，而最后表示的结果却一直不会变。"></a>快速幂算法能帮我们算出指数非常大的幂，传统的求幂算法之所以时间复杂度非常高（为O(指数n)），就是因为当指数n非常大的时候，需要执行的循环操作次数也非常大。所以我们快速幂算法的核心思想就是每一步都把指数分成两半，而相应的底数做平方运算。这样不仅能把非常大的指数给不断变小，所需要执行的循环次数也变小，而最后表示的结果却一直不会变。</h4><h1 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h1><h4 id="给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方。保证base和exponent不同时为0"><a href="#给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方。保证base和exponent不同时为0" class="headerlink" title="给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方。保证base和exponent不同时为0"></a>给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方。保证base和exponent不同时为0</h4> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"> public class Solution &#123;</span><br><span class="line">    public double Power(double base, int exponent) &#123;</span><br><span class="line">        if(base&#x3D;&#x3D;0)&#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        if(exponent&#x3D;&#x3D;0)&#123;</span><br><span class="line">            return 1;</span><br><span class="line">        &#125;</span><br><span class="line">        double result&#x3D;1;</span><br><span class="line">        int tem&#x3D;Math.abs(exponent);</span><br><span class="line">        while(tem&gt;0)&#123;</span><br><span class="line">            if(tem%2&#x3D;&#x3D;0)&#123;</span><br><span class="line">                tem&#x3D;tem&#x2F;2;</span><br><span class="line">                base&#x3D;base*base;</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                tem&#x3D;tem-1;&#x2F;&#x2F;对于奇数的，可以拆分成1和一个偶数</span><br><span class="line">                tem&#x3D;tem&#x2F;2;</span><br><span class="line">                result&#x3D;result*base;&#x2F;&#x2F;注意拆分的1要保存在result中</span><br><span class="line">                base&#x3D;base*base;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if(exponent&lt;0)&#123;</span><br><span class="line">            return 1&#x2F;result;</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liangjj456.github.io/LiangJJ456/2020/01/08/%E4%BA%8C%E8%BF%9B%E5%88%B6%E7%AE%97%E6%B3%95%E9%A2%98%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/LiangJJ456/images/avatar.gif">
+      <meta itemprop="name" content="星梦">
+      <meta itemprop="description" content="星光荡开宇宙">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="L">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/LiangJJ456/2020/01/08/%E4%BA%8C%E8%BF%9B%E5%88%B6%E7%AE%97%E6%B3%95%E9%A2%98%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">二进制算法题总结</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-08 14:09:07" itemprop="dateCreated datePublished" datetime="2020-01-08T14:09:07+08:00">2020-01-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-01-09 20:10:43" itemprop="dateModified" datetime="2020-01-09T20:10:43+08:00">2020-01-09</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="结论：假设有一个数n，那么n-amp-n-1-的作用：-n-amp-n-1-得到的结果相当于把整数的二进制表示中最右边的那个1变成0。"><a href="#结论：假设有一个数n，那么n-amp-n-1-的作用：-n-amp-n-1-得到的结果相当于把整数的二进制表示中最右边的那个1变成0。" class="headerlink" title="结论：假设有一个数n，那么n&amp;(n-1)的作用： n&amp;(n-1)得到的结果相当于把整数的二进制表示中最右边的那个1变成0。"></a>结论：假设有一个数n，那么n&amp;(n-1)的作用： n&amp;(n-1)得到的结果相当于把整数的二进制表示中最右边的那个1变成0。</h1><h2 id="例子1：求二进制数中1的个数。输入一个整数，输出该数二进制表示中1的个数，其中负数是用的补码表示。"><a href="#例子1：求二进制数中1的个数。输入一个整数，输出该数二进制表示中1的个数，其中负数是用的补码表示。" class="headerlink" title="例子1：求二进制数中1的个数。输入一个整数，输出该数二进制表示中1的个数，其中负数是用的补码表示。"></a>例子1：求二进制数中1的个数。输入一个整数，输出该数二进制表示中1的个数，其中负数是用的补码表示。</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class Solution</span><br><span class="line">&#123;</span><br><span class="line">public int NumOf1(int n)</span><br><span class="line">    &#123;</span><br><span class="line">        int count&#x3D;0;</span><br><span class="line">        while(n!&#x3D;0)</span><br><span class="line">        &#123;</span><br><span class="line">            n&#x3D;n&amp;(n-1);</span><br><span class="line">            ++count;</span><br><span class="line">        &#125;</span><br><span class="line">        return count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">~</span><br></pre></td></tr></table></figure>
+<h3 id="思路：链接：https-www-nowcoder-com-questionTerminal-8ee967e43c2c4ec193b040ea7fbb10b8"><a href="#思路：链接：https-www-nowcoder-com-questionTerminal-8ee967e43c2c4ec193b040ea7fbb10b8" class="headerlink" title="思路：链接：https://www.nowcoder.com/questionTerminal/8ee967e43c2c4ec193b040ea7fbb10b8"></a>思路：链接：<a href="https://www.nowcoder.com/questionTerminal/8ee967e43c2c4ec193b040ea7fbb10b8" target="_blank" rel="noopener">https://www.nowcoder.com/questionTerminal/8ee967e43c2c4ec193b040ea7fbb10b8</a></h3><p>来源：牛客网</p>
+<p>如果一个整数不为0，那么这个整数至少有一位是1。如果我们把这个整数减1，那么原来处在整数最右边的1就会变为0，原来在1后面的所有的0都会变成1(如果最右边的1后面还有0的话)。其余所有位将不会受到影响。<br>举个例子：一个二进制数1100，从右边数起第三位是处于最右边的一个1。减去1后，第三位变成0，它后面的两位0变成了1，而前面的1保持不变，因此得到的结果是1011.我们发现减1的结果是把最右边的一个1开始的所有位都取反了。这个时候如果我们再把原来的整数和减去1之后的结果做与运算，从原来整数最右边一个1那一位开始所有位都会变成0。如1100&amp;1011=1000.也就是说，把一个整数减去1，再和原整数做与运算，会把该整数最右边一个1变成0.那么一个整数的二进制有多少个1，就可以进行多少次这样的操作。</p>
+<h2 id="例2：求两个整数m和n的二进制有多少位不同"><a href="#例2：求两个整数m和n的二进制有多少位不同" class="headerlink" title="例2：求两个整数m和n的二进制有多少位不同"></a>例2：求两个整数m和n的二进制有多少位不同</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class Solution</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">    int NumOfDiff(int m,int n)</span><br><span class="line">    &#123;</span><br><span class="line">        int res&#x3D;m^n;&#x2F;&#x2F;先异或得到res，即求res的二进制中有多少1</span><br><span class="line">        int count&#x3D;0;</span><br><span class="line">        while(res!&#x3D;0)&#x2F;&#x2F;res为0，则表示 已无 不同位</span><br><span class="line">        &#123;</span><br><span class="line">            res&amp;&#x3D;(res-1);</span><br><span class="line">            ++count;</span><br><span class="line">        &#125;</span><br><span class="line">        return count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liangjj456.github.io/LiangJJ456/2020/01/07/Java%E4%B8%AD%E7%9A%84Arrays-copyOfRange%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/LiangJJ456/images/avatar.gif">
+      <meta itemprop="name" content="星梦">
+      <meta itemprop="description" content="星光荡开宇宙">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="L">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/LiangJJ456/2020/01/07/Java%E4%B8%AD%E7%9A%84Arrays-copyOfRange%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">Java中的Arrays.copyOfRange方法</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-01-07 16:45:42 / 修改时间：16:50:17" itemprop="dateCreated datePublished" datetime="2020-01-07T16:45:42+08:00">2020-01-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><h2 id="要使用这个方法，首先要import-java-util"><a href="#要使用这个方法，首先要import-java-util" class="headerlink" title="要使用这个方法，首先要import java.util.*;"></a>要使用这个方法，首先要import java.util.*;</h2><h2 id="Arrays-copyOfRange-T-original-int-from-int-to"><a href="#Arrays-copyOfRange-T-original-int-from-int-to" class="headerlink" title="Arrays.copyOfRange(T[ ] original,int from,int to)"></a>Arrays.copyOfRange(T[ ] original,int from,int to)</h2><h2 id="将一个原始的数组original，从下标from开始复制，复制到上标to，生成一个新的数组。注意这里包括下标from，不包括上标to。"><a href="#将一个原始的数组original，从下标from开始复制，复制到上标to，生成一个新的数组。注意这里包括下标from，不包括上标to。" class="headerlink" title="将一个原始的数组original，从下标from开始复制，复制到上标to，生成一个新的数组。注意这里包括下标from，不包括上标to。"></a>将一个原始的数组original，从下标from开始复制，复制到上标to，生成一个新的数组。注意这里包括下标from，不包括上标to。</h2><h1 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h1><h2 id="这个方法在一些处理数组的编程题里很好用，效率和clone基本一致，都是native-method，比利用循环复制数组效率要高得多。"><a href="#这个方法在一些处理数组的编程题里很好用，效率和clone基本一致，都是native-method，比利用循环复制数组效率要高得多。" class="headerlink" title="这个方法在一些处理数组的编程题里很好用，效率和clone基本一致，都是native method，比利用循环复制数组效率要高得多。"></a>这个方法在一些处理数组的编程题里很好用，效率和clone基本一致，都是native method，比利用循环复制数组效率要高得多。</h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liangjj456.github.io/LiangJJ456/2020/01/07/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93-1-20-2020/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/LiangJJ456/images/avatar.gif">
+      <meta itemprop="name" content="星梦">
+      <meta itemprop="description" content="星光荡开宇宙">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="L">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/LiangJJ456/2020/01/07/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93-1-20-2020/" class="post-title-link" itemprop="url">算法总结-1.20/2020</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-07 10:57:57" itemprop="dateCreated datePublished" datetime="2020-01-07T10:57:57+08:00">2020-01-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-01-09 20:11:10" itemprop="dateModified" datetime="2020-01-09T20:11:10+08:00">2020-01-09</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="递归与非递归的转化"><a href="#递归与非递归的转化" class="headerlink" title="递归与非递归的转化"></a>递归与非递归的转化</h1><h2 id="递归的思想其实先遍历到最底层，再往上返回，与栈的先进后出其实是一样的，因此算法题具有这种从后往前或者先进后出思想的既可以考虑递归也可以考虑栈。"><a href="#递归的思想其实先遍历到最底层，再往上返回，与栈的先进后出其实是一样的，因此算法题具有这种从后往前或者先进后出思想的既可以考虑递归也可以考虑栈。" class="headerlink" title="递归的思想其实先遍历到最底层，再往上返回，与栈的先进后出其实是一样的，因此算法题具有这种从后往前或者先进后出思想的既可以考虑递归也可以考虑栈。"></a>递归的思想其实先遍历到最底层，再往上返回，与栈的先进后出其实是一样的，因此算法题具有这种从后往前或者先进后出思想的既可以考虑递归也可以考虑栈。</h2><hr>
+<h1 id="典型例子"><a href="#典型例子" class="headerlink" title="典型例子"></a>典型例子</h1><h2 id="输入一个链表，按链表从尾到头的顺序返回一个ArrayList。"><a href="#输入一个链表，按链表从尾到头的顺序返回一个ArrayList。" class="headerlink" title="输入一个链表，按链表从尾到头的顺序返回一个ArrayList。"></a>输入一个链表，按链表从尾到头的顺序返回一个ArrayList。</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line">*    public class ListNode &#123;</span><br><span class="line">*        int val;</span><br><span class="line">*        ListNode next &#x3D; null;</span><br><span class="line">*</span><br><span class="line">*        ListNode(int val) &#123;</span><br><span class="line">*            this.val &#x3D; val;</span><br><span class="line">*        &#125;</span><br><span class="line">*    &#125;</span><br><span class="line">*</span><br><span class="line">*&#x2F;</span><br><span class="line">import java.util.ArrayList;</span><br><span class="line">public class Solution &#123;</span><br><span class="line">ArrayList&lt;Integer&gt; list &#x3D; new ArrayList();</span><br><span class="line">    public ArrayList&lt;Integer&gt; printListFromTailToHead(ListNode listNode) &#123;</span><br><span class="line">        if(listNode!&#x3D;null)&#123;</span><br><span class="line">            printListFromTailToHead(listNode.next);</span><br><span class="line">            list.add(listNode.val);</span><br><span class="line">        &#125;</span><br><span class="line">        return list;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://liangjj456.github.io/LiangJJ456/2020/01/05/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -463,14 +712,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/LiangJJ456/archives/">
         
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/LiangJJ456/tags/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

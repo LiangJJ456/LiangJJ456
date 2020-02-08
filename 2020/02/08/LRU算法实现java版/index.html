@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/LiangJJ456/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/LiangJJ456/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/LiangJJ456/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/LiangJJ456/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/LiangJJ456/css/main.css">
+
+
+<link rel="stylesheet" href="/LiangJJ456/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://liangjj456.github.io/LiangJJ456').hostname,
+    root: '/LiangJJ456/',
+    scheme: 'Muse',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="介绍：LRU即为最近最少使用算法，在java中可以使用LinkedHashMap数据结构搞定，LinkedHashMap为双向链表加hashMap的结构，除了hashMap的基本结构，他还多了双向链表的结构，双向链表的作用主要用来保存元素的插入的顺序，换句话来说即双向链表保存了每次插入元素的上一个指向的指针和其下一个指向的指针，即可保证插入的顺序。链表用来表示位置，哈希表用来存储和查找，即可实现">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LRU算法实现java版">
+<meta property="og:url" content="https://liangjj456.github.io/LiangJJ456/2020/02/08/LRU%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0java%E7%89%88/index.html">
+<meta property="og:site_name" content="L">
+<meta property="og:description" content="介绍：LRU即为最近最少使用算法，在java中可以使用LinkedHashMap数据结构搞定，LinkedHashMap为双向链表加hashMap的结构，除了hashMap的基本结构，他还多了双向链表的结构，双向链表的作用主要用来保存元素的插入的顺序，换句话来说即双向链表保存了每次插入元素的上一个指向的指针和其下一个指向的指针，即可保证插入的顺序。链表用来表示位置，哈希表用来存储和查找，即可实现">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-02-08T09:33:02.000Z">
+<meta property="article:modified_time" content="2020-02-08T13:48:28.296Z">
+<meta property="article:author" content="星梦">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://liangjj456.github.io/LiangJJ456/2020/02/08/LRU%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0java%E7%89%88/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>LRU算法实现java版 | L</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/LiangJJ456/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">L</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/LiangJJ456/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/LiangJJ456/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/LiangJJ456/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liangjj456.github.io/LiangJJ456/2020/02/08/LRU%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0java%E7%89%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/LiangJJ456/images/avatar.gif">
+      <meta itemprop="name" content="星梦">
+      <meta itemprop="description" content="星光荡开宇宙">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="L">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          LRU算法实现java版
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-02-08 17:33:02 / 修改时间：21:48:28" itemprop="dateCreated datePublished" datetime="2020-02-08T17:33:02+08:00">2020-02-08</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>介绍：LRU即为最近最少使用算法，在java中可以使用LinkedHashMap数据结构搞定，LinkedHashMap为双向链表加hashMap的结构，除了hashMap的基本结构，他还多了双向链表的结构，双向链表的作用主要用来保存元素的插入的顺序，换句话来说即双向链表保存了每次插入元素的上一个指向的指针和其下一个指向的指针，即可保证插入的顺序。链表用来表示位置，哈希表用来存储和查找，即可实现LRU算法。</p>
+</blockquote>
+<blockquote>
+<p><br>我们可以用一个额外哈希表（例如HashMap）来存放 key-value，这样的话，我们的 get 操作就可以在 O(1) 的时间内寻找到目标节点，并且把 value 返回了。<br><br>用了哈希表之后，虽然我们能够在 O(1) 时间内找到目标元素，可是，我们还需要删除该元素，并且把该元素插入到链表头部啊，删除一个元素，我们是需要定位到这个元素的前驱的，然而定位到这个元素的前驱，是需要 O(n) 时间复杂度的。<br><br>我们都已经能够在 O(1) 时间复杂度找到要删除的节点了，之所以还得花 O(n) 时间复杂度才能删除，主要是时间是花在了节点前驱的查找上，为了解决这个问题，其实，我们可以把单链表换成双链表，这样的话，我们就可以很好着解决这个问题了，而且，换成双链表之后，你会发现，它要比单链表的操作简单多了。<br>更具体思路：<br><a href="https://mp.weixin.qq.com/s/BGZjL8KbtCxm2Wy9rU9ucg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/BGZjL8KbtCxm2Wy9rU9ucg</a></p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">代码：</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LRU</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        LRUCache&lt;Integer,Integer&gt; lruCache=<span class="keyword">new</span> LRUCache(<span class="number">3</span>);</span><br><span class="line">        lruCache.put(<span class="number">0</span>,<span class="number">1</span>);</span><br><span class="line">        lruCache.put(<span class="number">2</span>,<span class="number">2</span>);</span><br><span class="line">        System.out.println(lruCache);</span><br><span class="line">        System.out.println(lruCache.get(<span class="number">0</span>));</span><br><span class="line">        System.out.println(lruCache);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//定义结构</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">extends</span> <span class="title">LinkedHashMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> cacheSize;</span><br><span class="line">    <span class="keyword">private</span> LinkedHashMap&lt;K,V&gt; cache=<span class="keyword">null</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LRUCache</span><span class="params">(<span class="keyword">int</span> cacheSize)</span></span>&#123;</span><br><span class="line"><span class="comment">//        super((int)Math.ceil(cacheSize/0.75f)+1,0.75f,true);</span></span><br><span class="line">        <span class="keyword">int</span> initCapacity=(<span class="keyword">int</span>)Math.ceil(cacheSize/<span class="number">0.75f</span>)+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">this</span>.cacheSize =cacheSize;</span><br><span class="line">        cache=<span class="keyword">new</span> LinkedHashMap&lt;K, V&gt;(initCapacity,<span class="number">0.75f</span>,<span class="keyword">true</span>)&#123;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">removeEldestEntry</span><span class="params">(Map.Entry&lt;K, V&gt; eldest)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> size()==LRUCache.<span class="keyword">this</span>.cacheSize;<span class="comment">//如何使用外部变量</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> V <span class="title">put</span><span class="params">(K key, V value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> cache.put(key, value);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> V <span class="title">get</span><span class="params">(Object key)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> cache.get(key);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> cache.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">时间复杂度：o(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line">手写结构</span><br><span class="line"><span class="comment">//双向链表</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LruNode</span></span>&#123;</span><br><span class="line">     String key;</span><br><span class="line">     Object value;</span><br><span class="line">     LruNode next;</span><br><span class="line">     LruNode pre;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LruNode</span><span class="params">(String key, Object value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.key = key;</span><br><span class="line">        <span class="keyword">this</span>.value = value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//LRu</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LruCache</span></span>&#123;</span><br><span class="line">    Map&lt;String,LruNode&gt; map;</span><br><span class="line">    LruNode head;</span><br><span class="line">    LruNode tail;</span><br><span class="line">    <span class="keyword">int</span> size;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LruCache</span><span class="params">(<span class="keyword">int</span> size)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.map = <span class="keyword">new</span> HashMap&lt;String, LruNode&gt;();</span><br><span class="line">        <span class="keyword">this</span>.size = size;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">put</span><span class="params">(String key,Object value)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head==<span class="keyword">null</span>)&#123;</span><br><span class="line">            head=<span class="keyword">new</span> LruNode(key, value);</span><br><span class="line">            tail=head;</span><br><span class="line">            map.put(key, head);</span><br><span class="line">        &#125;</span><br><span class="line">        LruNode lruNode=map.get(key);</span><br><span class="line">        <span class="keyword">if</span>(lruNode!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="comment">//原本有值，更新旧值</span></span><br><span class="line">            lruNode.value=value;</span><br><span class="line">            <span class="comment">//刷新访问的频率,即将其删除，并且加到头节点</span></span><br><span class="line">            removeInsert(lruNode);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="comment">//插入新值</span></span><br><span class="line">            LruNode tem=<span class="keyword">new</span> LruNode(key, value);</span><br><span class="line">            <span class="comment">//插入前判断是否会溢出</span></span><br><span class="line">            <span class="keyword">if</span>(size&lt;=map.size())&#123;</span><br><span class="line">                <span class="comment">//溢出</span></span><br><span class="line">                <span class="comment">//删除哈希表</span></span><br><span class="line">                map.remove(tail.key);</span><br><span class="line">                <span class="comment">//注意当map为1时，删除一个即为0</span></span><br><span class="line">                <span class="keyword">if</span>(map.size()!=<span class="number">0</span>)&#123;</span><br><span class="line">                    <span class="comment">//删除尾部节点</span></span><br><span class="line">                    tail=tail.pre;</span><br><span class="line">                    tail.next=<span class="keyword">null</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    head=<span class="keyword">null</span>;</span><br><span class="line">                    tail=<span class="keyword">null</span>;</span><br><span class="line">                    <span class="keyword">this</span>.put(key, value);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//插入新值</span></span><br><span class="line">            map.put(key,tem);</span><br><span class="line">            <span class="comment">//更新其为头节点</span></span><br><span class="line">            tem.next=head;</span><br><span class="line">            head.pre=tem;</span><br><span class="line">            head=tem;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> value;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">get</span><span class="params">(String key)</span></span>&#123;</span><br><span class="line">        LruNode res=map.get(key);</span><br><span class="line">        <span class="keyword">if</span>(res!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="comment">//刷新访问的频率,即将其删除，并且加到头节点</span></span><br><span class="line">            removeInsert(res);</span><br><span class="line">            <span class="keyword">return</span> res.value;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeInsert</span><span class="params">(LruNode node)</span></span>&#123;</span><br><span class="line">        <span class="comment">//如果该节点是头节点直接返回</span></span><br><span class="line">        <span class="keyword">if</span>(node==head)&#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果是尾节点，</span></span><br><span class="line">        <span class="keyword">if</span>(node==tail)&#123;</span><br><span class="line">            tail=tail.pre;</span><br><span class="line">            tail.next=<span class="keyword">null</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="comment">//普通节点</span></span><br><span class="line">            node.pre.next=node.next;</span><br><span class="line">            node.next.pre=node.pre;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//插入头节点</span></span><br><span class="line">        node.next=head;</span><br><span class="line">        node.pre=<span class="keyword">null</span>;</span><br><span class="line">        head.pre=node;</span><br><span class="line">        head=node;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/LiangJJ456/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/LiangJJ456/2020/02/08/LinkedHashMap%E7%9A%84accessOrder/" rel="prev" title="LinkedHashMap的accessOrder">
+      <i class="fa fa-chevron-left"></i> LinkedHashMap的accessOrder
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">星梦</p>
+  <div class="site-description" itemprop="description">星光荡开宇宙</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/LiangJJ456/archives/">
+        
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/LiangJJ456/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">星梦</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/LiangJJ456/lib/anime.min.js"></script>
+  <script src="/LiangJJ456/lib/velocity/velocity.min.js"></script>
+  <script src="/LiangJJ456/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/LiangJJ456/js/utils.js"></script>
+
+<script src="/LiangJJ456/js/motion.js"></script>
+
+
+<script src="/LiangJJ456/js/schemes/muse.js"></script>
+
+
+<script src="/LiangJJ456/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/LiangJJ456/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/LiangJJ456/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":315,"height":415},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+</html>

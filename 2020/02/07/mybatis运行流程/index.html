@@ -46,20 +46,20 @@
   };
 </script>
 
-  <meta name="description" content="说明要使用这个方法，首先要import java.util.*;Arrays.copyOfRange(T[ ] original,int from,int to)将一个原始的数组original，从下标from开始复制，复制到上标to，生成一个新的数组。注意这里包括下标from，不包括上标to。用途这个方法在一些处理数组的编程题里很好用，效率和clone基本一致，都是native method，比">
+  <meta name="description" content="参考：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;61029087?utm_source&#x3D;wechat_session&amp;utm_medium&#x3D;social&amp;utm_oi&#x3D;870630421786939392  一、解析XML二、Dao接口代理三、执行">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java中的Arrays.copyOfRange方法">
-<meta property="og:url" content="https://liangjj456.github.io/LiangJJ456/2020/01/07/Java%E4%B8%AD%E7%9A%84Arrays-copyOfRange%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:title" content="mybatis运行流程">
+<meta property="og:url" content="https://liangjj456.github.io/LiangJJ456/2020/02/07/mybatis%E8%BF%90%E8%A1%8C%E6%B5%81%E7%A8%8B/index.html">
 <meta property="og:site_name" content="L">
-<meta property="og:description" content="说明要使用这个方法，首先要import java.util.*;Arrays.copyOfRange(T[ ] original,int from,int to)将一个原始的数组original，从下标from开始复制，复制到上标to，生成一个新的数组。注意这里包括下标from，不包括上标to。用途这个方法在一些处理数组的编程题里很好用，效率和clone基本一致，都是native method，比">
+<meta property="og:description" content="参考：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;61029087?utm_source&#x3D;wechat_session&amp;utm_medium&#x3D;social&amp;utm_oi&#x3D;870630421786939392  一、解析XML二、Dao接口代理三、执行">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-01-07T08:45:42.000Z">
-<meta property="article:modified_time" content="2020-01-07T08:50:17.231Z">
+<meta property="article:published_time" content="2020-02-07T11:22:05.000Z">
+<meta property="article:modified_time" content="2020-02-08T07:14:49.786Z">
 <meta property="article:author" content="星梦">
-<meta property="article:tag" content="Java基础">
+<meta property="article:tag" content="mybatis">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://liangjj456.github.io/LiangJJ456/2020/01/07/Java%E4%B8%AD%E7%9A%84Arrays-copyOfRange%E6%96%B9%E6%B3%95/">
+<link rel="canonical" href="https://liangjj456.github.io/LiangJJ456/2020/02/07/mybatis%E8%BF%90%E8%A1%8C%E6%B5%81%E7%A8%8B/">
 
 
 <script id="page-configurations">
@@ -71,7 +71,7 @@
   };
 </script>
 
-  <title>Java中的Arrays.copyOfRange方法 | L</title>
+  <title>mybatis运行流程 | L</title>
   
 
 
@@ -175,7 +175,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liangjj456.github.io/LiangJJ456/2020/01/07/Java%E4%B8%AD%E7%9A%84Arrays-copyOfRange%E6%96%B9%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="https://liangjj456.github.io/LiangJJ456/2020/02/07/mybatis%E8%BF%90%E8%A1%8C%E6%B5%81%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/LiangJJ456/images/avatar.gif">
@@ -188,7 +188,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Java中的Arrays.copyOfRange方法
+          mybatis运行流程
         </h1>
 
         <div class="post-meta">
@@ -197,10 +197,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-01-07 16:45:42 / 修改时间：16:50:17" itemprop="dateCreated datePublished" datetime="2020-01-07T16:45:42+08:00">2020-01-07</time>
+              <time title="创建时间：2020-02-07 19:22:05" itemprop="dateCreated datePublished" datetime="2020-02-07T19:22:05+08:00">2020-02-07</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-08 15:14:49" itemprop="dateModified" datetime="2020-02-08T15:14:49+08:00">2020-02-08</time>
+              </span>
 
           
 
@@ -213,7 +219,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><h2 id="要使用这个方法，首先要import-java-util"><a href="#要使用这个方法，首先要import-java-util" class="headerlink" title="要使用这个方法，首先要import java.util.*;"></a>要使用这个方法，首先要import java.util.*;</h2><h2 id="Arrays-copyOfRange-T-original-int-from-int-to"><a href="#Arrays-copyOfRange-T-original-int-from-int-to" class="headerlink" title="Arrays.copyOfRange(T[ ] original,int from,int to)"></a>Arrays.copyOfRange(T[ ] original,int from,int to)</h2><h2 id="将一个原始的数组original，从下标from开始复制，复制到上标to，生成一个新的数组。注意这里包括下标from，不包括上标to。"><a href="#将一个原始的数组original，从下标from开始复制，复制到上标to，生成一个新的数组。注意这里包括下标from，不包括上标to。" class="headerlink" title="将一个原始的数组original，从下标from开始复制，复制到上标to，生成一个新的数组。注意这里包括下标from，不包括上标to。"></a>将一个原始的数组original，从下标from开始复制，复制到上标to，生成一个新的数组。注意这里包括下标from，不包括上标to。</h2><h1 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h1><h2 id="这个方法在一些处理数组的编程题里很好用，效率和clone基本一致，都是native-method，比利用循环复制数组效率要高得多。"><a href="#这个方法在一些处理数组的编程题里很好用，效率和clone基本一致，都是native-method，比利用循环复制数组效率要高得多。" class="headerlink" title="这个方法在一些处理数组的编程题里很好用，效率和clone基本一致，都是native method，比利用循环复制数组效率要高得多。"></a>这个方法在一些处理数组的编程题里很好用，效率和clone基本一致，都是native method，比利用循环复制数组效率要高得多。</h2>
+        <blockquote>
+<p>参考：<a href="https://zhuanlan.zhihu.com/p/61029087?utm_source=wechat_session&amp;utm_medium=social&amp;utm_oi=870630421786939392" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/61029087?utm_source=wechat_session&amp;utm_medium=social&amp;utm_oi=870630421786939392</a></p>
+</blockquote>
+<h1 id="一、解析XML"><a href="#一、解析XML" class="headerlink" title="一、解析XML"></a>一、解析XML</h1><h1 id="二、Dao接口代理"><a href="#二、Dao接口代理" class="headerlink" title="二、Dao接口代理"></a>二、Dao接口代理</h1><h1 id="三、执行"><a href="#三、执行" class="headerlink" title="三、执行"></a>三、执行</h1>
     </div>
 
     
@@ -222,7 +231,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/LiangJJ456/tags/Java%E5%9F%BA%E7%A1%80/" rel="tag"># Java基础</a>
+              <a href="/LiangJJ456/tags/mybatis/" rel="tag"># mybatis</a>
           </div>
 
         
@@ -231,12 +240,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/LiangJJ456/2020/01/07/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93-1-20-2020/" rel="prev" title="算法总结-1.20/2020">
-      <i class="fa fa-chevron-left"></i> 算法总结-1.20/2020
+    <a href="/LiangJJ456/2020/02/07/mybatis%E5%A6%82%E4%BD%95%E9%98%B2%E6%AD%A2sql%E6%B3%A8%E5%85%A5/" rel="prev" title="mybatis如何防止sql注入">
+      <i class="fa fa-chevron-left"></i> mybatis如何防止sql注入
     </a></div>
       <div class="post-nav-item">
-    <a href="/LiangJJ456/2020/01/08/%E4%BA%8C%E8%BF%9B%E5%88%B6%E7%AE%97%E6%B3%95%E9%A2%98%E6%80%BB%E7%BB%93/" rel="next" title="二进制算法题总结">
-      二进制算法题总结 <i class="fa fa-chevron-right"></i>
+    <a href="/LiangJJ456/2020/02/08/LinkedHashMap%E7%9A%84accessOrder/" rel="next" title="LinkedHashMap的accessOrder">
+      LinkedHashMap的accessOrder <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -297,7 +306,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#说明"><span class="nav-number">1.</span> <span class="nav-text">说明</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#要使用这个方法，首先要import-java-util"><span class="nav-number">1.1.</span> <span class="nav-text">要使用这个方法，首先要import java.util.*;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Arrays-copyOfRange-T-original-int-from-int-to"><span class="nav-number">1.2.</span> <span class="nav-text">Arrays.copyOfRange(T[ ] original,int from,int to)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将一个原始的数组original，从下标from开始复制，复制到上标to，生成一个新的数组。注意这里包括下标from，不包括上标to。"><span class="nav-number">1.3.</span> <span class="nav-text">将一个原始的数组original，从下标from开始复制，复制到上标to，生成一个新的数组。注意这里包括下标from，不包括上标to。</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用途"><span class="nav-number">2.</span> <span class="nav-text">用途</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#这个方法在一些处理数组的编程题里很好用，效率和clone基本一致，都是native-method，比利用循环复制数组效率要高得多。"><span class="nav-number">2.1.</span> <span class="nav-text">这个方法在一些处理数组的编程题里很好用，效率和clone基本一致，都是native method，比利用循环复制数组效率要高得多。</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、解析XML"><span class="nav-number">1.</span> <span class="nav-text">一、解析XML</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、Dao接口代理"><span class="nav-number">2.</span> <span class="nav-text">二、Dao接口代理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、执行"><span class="nav-number">3.</span> <span class="nav-text">三、执行</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
